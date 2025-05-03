@@ -2,8 +2,8 @@ import { HomeIcon, PlusIcon } from "lucide-react";
 
 export function Navigation({ onPlusClick }: { onPlusClick?: () => void }) {
   return (
-    <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-      <div className="bg-white rounded-full shadow-lg px-8 py-3 flex items-center space-x-8">
+    <div className="fixed bottom-0 left-0 right-0 w-full flex justify-center z-50 pb-[env(safe-area-inset-bottom)]">
+      <div className="bg-white shadow-lg px-8 py-3 pb-6 flex items-center justify-center space-x-8 w-full">
         <button className="focus:outline-none">
           <HomeIcon className="w-6 h-6 text-gray-800" />
         </button>
