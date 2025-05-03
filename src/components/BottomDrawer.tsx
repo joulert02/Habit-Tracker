@@ -110,13 +110,14 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
   return (
     <div
       ref={drawerRef}
-      className="fixed left-0 right-0 bottom-0 bg-white rounded-t-2xl shadow-lg z-50"
+      className="fixed left-0 right-0 bottom-0 bg-white rounded-t-2xl z-50"
       style={{
         height: drawerHeight ? `${drawerHeight}px` : undefined,
         maxHeight: "100vh",
         transform: `translateY(${position}%)`,
         transition: isTransitioning ? "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
         touchAction: "none", // Prevent default touch behaviors
+        boxShadow: "0 8px 32px 0 rgba(60,60,100,0.25), 0 1.5px 6px 0 rgba(60,60,100,0.10)"
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
