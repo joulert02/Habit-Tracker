@@ -14,3 +14,17 @@
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
+
+.drawer-content{
+  position: relative;
+  z-index: 2;  
+}
+
+.drawer-content-inner {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  top: 99%;
+  left: 0;
+}

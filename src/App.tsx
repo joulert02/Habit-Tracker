@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 import { DayStrip } from "./components/DayStrip";
 import { HabitList } from "./components/HabitList";
-
 import { Navigation } from "./components/Navigation";
+import { BottomDrawer } from "./components/BottomDrawer";
 
 export function App() {
   const [selectedDay, setSelectedDay] = useState(2); // Wednesday (index 2) selected by default
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const onToggle = (habitId: number) => {
     console.log(habitId);
@@ -89,8 +90,32 @@ export function App() {
           ]}
           onToggle={onToggle}
         />
+        <button
+          onClick={() => setIsDrawerOpen(true)}
+          className="fixed bottom-20 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg"
+        >
+          Open Drawer
+        </button>
       </div>
       <Navigation />
+      <BottomDrawer 
+        isOpen={isDrawerOpen} 
+        onClose={() => setIsDrawerOpen(false)}
+        previewOffset={0} // Show 30% of the drawer when closed
+      >
+        <div className="flex flex-col gap-4">
+          <h2 className="text-xl font-bold">Drawer Content</h2>
+          <p>This is a test content for the bottom drawer component.</p>
+          <div className="flex flex-col gap-2">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+              Action 1
+            </button>
+            <button className="bg-green-500 text-white px-4 py-2 rounded-lg">
+              Action 2
+            </button>
+          </div>
+        </div>
+      </BottomDrawer>
     </div>
   );
 }
