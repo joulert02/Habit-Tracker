@@ -75,24 +75,36 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
 
   // Touch event handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault(); // Prevent scrolling while dragging
+    const target = e.target as HTMLElement;
+    if (!target.closest('.drawer-handle')) return;
+    e.preventDefault();
     handleStart(e.touches[0].clientY);
   };
+
   const handleTouchMove = (e: React.TouchEvent) => {
-    e.preventDefault(); // Prevent scrolling while dragging
+    const target = e.target as HTMLElement;
+    if (!target.closest('.drawer-handle')) return;
+    e.preventDefault();
     handleMove(e.touches[0].clientY);
   };
+
   const handleTouchEnd = () => {
     handleEnd();
   };
 
   // Mouse event handlers
   const handleMouseDown = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.drawer-handle')) return;
     handleStart(e.clientY);
   };
+
   const handleMouseMove = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.drawer-handle')) return;
     handleMove(e.clientY);
   };
+
   const handleMouseUp = () => {
     handleEnd();
   };
@@ -116,7 +128,7 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
         maxHeight: "100vh",
         transform: `translateY(${position}%)`,
         transition: isTransitioning ? "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
-        touchAction: "none", // Prevent default touch behaviors
+        touchAction: "none",
         boxShadow: "0 8px 32px 0 rgba(60,60,100,0.25), 0 1.5px 6px 0 rgba(60,60,100,0.10)"
       }}
       onTouchStart={handleTouchStart}
@@ -127,7 +139,7 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
       onMouseUp={handleMouseUp}
     >
       <div
-        className="w-10 h-1 bg-gray-300 rounded-full mx-auto my-2 cursor-grab active:cursor-grabbing drawer-content"
+        className="w-10 h-1 bg-gray-300 rounded-full mx-auto my-2 cursor-grab active:cursor-grabbing drawer-handle"
         style={{ height: 8, marginTop: 8, marginBottom: 12 }}
       />
       <div className="drawer-content-inner"> </div>
